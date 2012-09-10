@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mongoid_restful_api (0.0.1)
+    mongoid_restful_api (0.0.2)
       mongoid (~> 2.4)
       rails (~> 3.2)
 
