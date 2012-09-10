@@ -8,6 +8,10 @@ The purpose of this gem is to simplify development and does so by exploiting dyn
 
 Since there are only two small source files that contain the bulk of the functionality of the gem, please take a moment to look them over and decide for yourself if the gem is right for your application.
 
+## Mongoid Version
+
+This gem supports Mongoid version 3.0 and greater. Use tagged version 0.0.2 for older Mongoid back to 2.4.
+
 ## Installation
 
     $ gem install mongoid_restful_api
