@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "A gem that simplifies the creation of restful APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is optional during development."
   s.description = "A gem that simplifies the creation of restful APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is optional during development."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails"   , "~> 3.2"
   s.add_dependency "mongoid" , "~> 2.4"
