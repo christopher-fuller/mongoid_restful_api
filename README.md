@@ -30,7 +30,7 @@ Example Routes:
 
 Now ALL top-level resourceful routes will route to the `MongoidRestfulApiController` base class.
 
-For example, a GET request to `http://localhost:3000/widgets.json` will load all widget documents from the widgets collection in the database. And a POST request would create a widget document with all provided attributes. Similarly, PUT and DELETE requests also work as expected. Requests to `http://localhost:3000/whatever.json`, meaning any top-level resourceful route, just work.
+For example, a GET request to `http://localhost:3000/widgets.json` will load all widget documents from the widgets collection in the database. And a POST request would create a widget document with all supplied attributes. Similarly, PUT and DELETE requests also work as expected. Requests to `http://localhost:3000/whatever.json`, meaning any top-level resourceful route, just work.
 
 On each request, a Mongoid model is dynamically created on-the-fly, taking it's name from the route, so creating models during development is entirely optional. Or if an existing predefined model matches the name of the route, it will be used instead.
 
