@@ -29,7 +29,9 @@ During development only, add `mongoid_restful_api_wildcard_routes` to the applic
 Example Routes:
 
     WidgetsApp::Application.routes.draw do
+
       mongoid_restful_api_wildcard_routes
+
     end
 
 Now ALL top-level resourceful routes will route to the `MongoidRestfulApiController` base class.
@@ -49,18 +51,28 @@ Meaning, for each of the application's APIs, add `resources` routes, create a co
 Example Routes:
 
     WidgetsApp::Application.routes.draw do
+
       resources :widgets
+
     end
 
 Example Controller:
 
     class WidgetsController < MongoidRestfulApiController
+
+      # no other code is necessary unless additional or overridden functionality is needed
+      # the MongoidRestfulApiController extended class simply needs to exist
+
     end
 
 Example Model:
 
     class Widgets
+
       include Mongoid::Document
+
+      # rest of the model definition goes here
+
     end
 
 ## Copyright
