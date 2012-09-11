@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Christopher Fuller"]
   s.email       = ["git@chrisfuller.me"]
   s.homepage    = "http://github.com/chrisfuller/mongoid_restful_api"
-  s.summary     = "A gem that simplifies the creation of restful APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is optional during development."
-  s.description = "A gem that simplifies the creation of restful APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is optional during development."
+  s.summary     = "A gem that simplifies the creation of restful Rails APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is now entirely optional during development."
+  s.description = "A gem that simplifies the creation of restful Rails APIs backed by MongoDB via the Mongoid ODM.\nDefining models and/or controllers in Rails is now entirely optional during development."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
