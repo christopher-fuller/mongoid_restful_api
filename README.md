@@ -1,12 +1,14 @@
 # mongoid_restful_api
 
-A gem that simplifies the creation of restful APIs backed by [MongoDB](http://mongodb.org) via the [Mongoid](http://mongoid.org) ODM. Defining models and/or controllers in Rails is optional during development.
+A gem that simplifies the creation of restful Rails APIs backed by [MongoDB](http://mongodb.org) via the [Mongoid](http://mongoid.org) ODM. Defining models and/or controllers in Rails is now entirely optional during development.
+
+## Purpose
+
+The purpose of this gem is to simplify development and does so by exploiting dynamic attributes in MongoDB and Mongoid and also the dynamic nature of Ruby itself. This gem sets up wildcard routing so all ALL top-level resourceful routes are enabled and work even if models and/or controllers have not yet been created in the Rails application. And since all attributes are accepted into the database (when the Mongoid setting `allow_dynamic_fields` is set to `true`), a focus on client-side javascript work is made possible during the initial phases of prototyping and development. Then later in the development lifecycle, before deploying to production, the wildcard routes must be removed and the Mongoid setting `allow_dynamic_fields` should be set to `false`, since these are both security concerns. The controllers that are created in the application can now simply extend `MongoidRestfulApiController` and do not require further logic unless additional or overridden functionality is desired.
 
 ## Disclaimer
 
-The purpose of this gem is to simplify development and does so by exploiting dynamic attributes in MongoDB and Mongoid and also the dynmaic nature of Ruby itself. Using the `mongoid_restful_api_wildcard_routes` introduces a major security issue in the applicaiton and should **only be used during development**. Once the `mongoid_restful_api_wildcard_routes` are removed (before deploying the application to production) and models are created for each the application's APIs, simply extending the `MongoidRestfulApiController` does not introduce any security issues. Please follow the instructions below to understand the production deployment workflow.
-
-Since there are only two small source files that contain the bulk of the functionality of the gem, please take a moment to look them over and decide for yourself if the gem is right for your application.
+Using this gem introduces a security concern in the Rails application. The `mongoid_restful_api_wildcard_routes` **must only be used during development**. Please follow the instructions below to understand the production deployment workflow and the `mongoid_restful_api_wildcard_routes` **must be removed before deploying to production**.
 
 ## Mongoid Version
 
@@ -21,6 +23,10 @@ This gem supports Mongoid version 3.0 and greater. Use tagged version 0.0.2 for 
 Add to Gemfile:
 
     gem 'mongoid_restful_api'
+
+### Mongoid Configuration
+
+Set `allow_dynamic_fields` to `true` in the Mongoid configuration file.
 
 ## Usage
 
@@ -42,11 +48,11 @@ On each request, a Mongoid model is dynamically created on-the-fly, taking it's 
 
 ### Production Deployment Workflow
 
-Before deploying to production, all of the application's APIs need to be backed by actual models and controllers.
+Before deploying to production, set the Mongoid setting `allow_dynamic_fields` to `false` and then ensure all of the application's APIs are backed by actual models and controllers.
 
-First remove `mongoid_restful_api_wildcard_routes` from the application's routes file and just follow normal Rails application development practices.
+Remove `mongoid_restful_api_wildcard_routes` from the application's routes file and just follow normal Rails application development practices.
 
-Meaning, for each of the application's APIs, add `resources` routes, create a corresponding controller, extending the `MongoidRestfulApiController` base class, and create an actual Mongoid model.
+Meaning, for each of the application's APIs, add resourceful routes, create a corresponding controller, extending the `MongoidRestfulApiController` base class, and create an actual Mongoid model.
 
 Example Routes:
 
@@ -60,7 +66,7 @@ Example Controller:
 
     class WidgetsController < MongoidRestfulApiController
 
-      # no other code is necessary unless additional or overridden functionality is needed
+      # no other code is necessary unless additional or overridden functionality is desired
       # the MongoidRestfulApiController extended class simply needs to exist
 
     end
