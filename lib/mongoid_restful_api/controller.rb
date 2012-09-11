@@ -1,4 +1,6 @@
-class MongoidRestfulApiController < ActionController::Base
+require 'mongoid'
+
+class MongoidRestfulApiController < ::ActionController::Base
 
   before_filter :set_key, :set_model, :set_document
 
@@ -40,7 +42,7 @@ class MongoidRestfulApiController < ActionController::Base
     if params[:model].blank?
       if controller_name.to_sym == :mongoid_restful_api
         msg = 'MongoidRestfulApiController may not be routed to directly'
-        raise MongoidRestfulApi::RoutingError, msg
+        raise ::MongoidRestfulApi::RoutingError, msg
       else
         @key = controller_name.singularize
       end
@@ -58,8 +60,8 @@ class MongoidRestfulApiController < ActionController::Base
         Class.new do
           def self.include_mongoid
             class_eval do
-              include Mongoid::Document
-              include Mongoid::Timestamps
+              include ::Mongoid::Document
+              include ::Mongoid::Timestamps
             end
             self.singleton_class
           end
