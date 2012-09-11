@@ -75,7 +75,7 @@ Example Model:
 
     class Widgets
 
-      include Mongoid::Document
+      include ::Mongoid::Document
 
       # rest of the model definition goes here
 
