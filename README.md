@@ -52,7 +52,7 @@ Before deploying to production, set the Mongoid setting `allow_dynamic_fields` t
 
 Remove `mongoid_restful_api_wildcard_routes` from the application's routes file and just follow normal Rails application development practices.
 
-Meaning, for each of the application's APIs, add resourceful routes, create a corresponding controller, extending the `MongoidRestfulApiController` base class, and create an actual Mongoid model.
+Meaning, for each of the application's APIs, add resourceful routes, create a corresponding controller, extending the `MongoidRestfulApiController` base class, and create a corresponding Mongoid model.
 
 Example Routes:
 
