@@ -26,7 +26,7 @@ Add to Gemfile:
 
 ### Mongoid Configuration
 
-Set `allow_dynamic_fields` to `true` in the Mongoid configuration file.
+Set both `allow_dynamic_fields` and `include_root_in_json` to `true` in the Mongoid configuration file.
 
 ## Usage
 

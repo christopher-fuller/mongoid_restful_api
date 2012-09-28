@@ -4,22 +4,24 @@ class MongoidRestfulApiController < ::ActionController::Base
 
   before_filter :set_key, :set_model, :set_document
 
+  respond_to :json
+
   def index
-    render :json => { @key.pluralize => @model.all }
+    respond_with @model
   end
 
   def create
-    @document = @model.create attributes
-    respond
+    @document = @model.create filtered_attributes
+    respond_with @document
   end
 
   def show
-    respond
+    respond_with @document
   end
 
   def update
-    @document.update_attributes attributes
-    respond
+    @document.update_attributes filtered_attributes
+    respond_with @document
   end
 
   def destroy
@@ -35,13 +37,6 @@ class MongoidRestfulApiController < ::ActionController::Base
       param = params[@key][key] unless params[@key][key].blank?
     end
     param
-  end
-
-  def respond
-    attributes = @document.attributes.select do |k|
-      k.to_sym != :versions
-    end
-    render :json => { @key => attributes }
   end
 
   private
@@ -87,7 +82,7 @@ class MongoidRestfulApiController < ::ActionController::Base
     end
   end
 
-  def attributes
+  def filtered_attributes
     if params[@key].is_a? Hash
       params[@key].select { |k| k.to_sym != :_id }
     end
