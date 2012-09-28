@@ -29,6 +29,14 @@ class MongoidRestfulApiController < ::ActionController::Base
 
   protected
 
+  def param key
+    param = params[key] unless params[key].blank?
+    if params[@key].is_a? Hash
+      param = params[@key][key] unless params[@key][key].blank?
+    end
+    param
+  end
+
   def respond
     attributes = @document.attributes.select do |k|
       k.to_sym != :versions
