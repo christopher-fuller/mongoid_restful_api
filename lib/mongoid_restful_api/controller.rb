@@ -6,13 +6,17 @@ class MongoidRestfulApiController < ::ActionController::Base
 
   respond_to :json
 
+  def initialize
+    extend ::Rails.application.routes.url_helpers
+  end
+
   def index
-    respond_with @model
+    respond_with @model, :root => @key.pluralize
   end
 
   def create
     @document = @model.create filtered_attributes
-    respond_with @document
+    respond_with @document, :location => nil
   end
 
   def show
@@ -21,7 +25,7 @@ class MongoidRestfulApiController < ::ActionController::Base
 
   def update
     @document.update_attributes filtered_attributes
-    respond_with @document
+    respond_with @document, :location => nil
   end
 
   def destroy
