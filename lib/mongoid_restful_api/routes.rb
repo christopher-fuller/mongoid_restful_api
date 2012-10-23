@@ -3,11 +3,12 @@ module ActionDispatch::Routing
   class Mapper
 
     def mongoid_restful_api_wildcard_routes
-      match ':model(.:format)'     => 'mongoid_restful_api#index'   , :via => :get
-      match ':model(.:format)'     => 'mongoid_restful_api#create'  , :via => :post
-      match ':model/:id(.:format)' => 'mongoid_restful_api#show'    , :via => :get
-      match ':model/:id(.:format)' => 'mongoid_restful_api#update'  , :via => :put
-      match ':model/:id(.:format)' => 'mongoid_restful_api#destroy' , :via => :delete
+      json = { :format => :json }
+      match ':model(.:format)'     => 'mongoid_restful_api#index'   , :via => :get    , :constraints => json
+      match ':model(.:format)'     => 'mongoid_restful_api#create'  , :via => :post   , :constraints => json
+      match ':model/:id(.:format)' => 'mongoid_restful_api#show'    , :via => :get    , :constraints => json
+      match ':model/:id(.:format)' => 'mongoid_restful_api#update'  , :via => :put    , :constraints => json
+      match ':model/:id(.:format)' => 'mongoid_restful_api#destroy' , :via => :delete , :constraints => json
     end
 
   end
